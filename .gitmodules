@@ -1,0 +1,34 @@
+[submodule "luci-app-daed"]
+	path = luci-app-daed
+	url = https://github.com/QiuSimons/luci-app-daed.git
+[submodule "luci-app-mosdns"]
+	path = luci-app-mosdns
+	url = https://github.com/sbwml/luci-app-mosdns.git
+[submodule "luci-app-adguardhome"]
+        path = luci-app-adguardhome
+        url = https://github.com/xptsp/luci-app-adguardhome.git
+[submodule "luci-app-lucky"]
+	path = luci-app-lucky
+	url = https://github.com/gdy666/luci-app-lucky.git
+[submodule "luci-theme-argon"]
+	path = luci-theme-argon
+	url = https://github.com/jerrykuku/luci-theme-argon.git
+[submodule "luci-lib-docker"]
+        path = luci-lib-docker
+        url = https://github.com/lisaac/luci-lib-docker.git
+[submodule "luci-app-dockerman"]
+        path = luci-app-dockerman
+        url = https://github.com/lisaac/luci-app-dockerman.git
+[submodule "luci-app-argon-config"]
+	path = luci-app-argon-config
+	url = https://github.com/jerrykuku/luci-app-argon-config.git
+[submodule "openwrt-twin-bcrypt-js"]
+        path = openwrt-twin-bcrypt-js
+        url = https://github.com/xptsp/openwrt-twin-bcrypt-js.git
+[submodule "luci-app-yt-dlp"]
+        path = luci-app-yt-dlp
+        url = https://github.com/liudf0716/luci-app-yt-dlp.git
+[submodule "luci-app-openclash"]
+	path = luci-app-openclash
+	url = https://github.com/vernesong/OpenClash.git
+        branch = dev
