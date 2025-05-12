@@ -2,3 +2,18 @@
 	path = openclash
 	url = https://github.com/vernesong/OpenClash.git
 	branch = dev
+[submodule "luci-app-daed"]
+	path = luci-app-daed
+	url = https://github.com/QiuSimons/luci-app-daed.git
+[submodule "luci-app-mosdns"]
+	path = luci-app-mosdns
+	url = https://github.com/sbwml/luci-app-mosdns.git
+[submodule "luci-app-lucky"]
+	path = luci-app-lucky
+	url = https://github.com/gdy666/luci-app-lucky.git
+[submodule "luci-theme-argon"]
+	path = luci-theme-argon
+	url = https://github.com/jerrykuku/luci-theme-argon.git
+[submodule "luci-app-argon-config"]
+	path = luci-app-argon-config
+	url = https://github.com/jerrykuku/luci-app-argon-config.git
