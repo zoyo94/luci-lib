@@ -23,3 +23,9 @@
 [submodule "istore"]
 	path = istore
 	url = https://github.com/linkease/istore.git
+[submodule "nas"]
+	path = nas
+	url = https://github.com/linkease/nas-packages.git
+[submodule "nas_luci"]
+	path = nas_luci
+	url = https://github.com/linkease/nas-packages-luci.git
