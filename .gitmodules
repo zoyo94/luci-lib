@@ -17,3 +17,9 @@
 [submodule "luci-app-argon-config"]
 	path = luci-app-argon-config
 	url = https://github.com/jerrykuku/luci-app-argon-config.git
+[submodule "luci-app-quickstart"]
+	path = luci-app-quickstart
+	url = https://github.com/animegasan/luci-app-quickstart.git
+[submodule "istore"]
+	path = istore
+	url = https://github.com/linkease/istore.git
