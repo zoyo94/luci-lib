@@ -1,46 +1,57 @@
 name: Auto Update Submodules for luci-lib
 
-# 触发条件：按需选择（推荐「定时+手动」，避免频繁推送）
 on:
-  # 1. 手动触发（需要时在 Actions 页面点击运行）
-  workflow_dispatch:
-  # 2. 定时触发（每天 UTC 0 点执行，即北京时间 8 点，可调整 cron 表达式）
+  workflow_dispatch:  # 手动触发
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '30 8 * * *'  # 每天 UTC 0 点执行
 
 jobs:
   update-submodules:
     runs-on: ubuntu-latest
     steps:
-      # 步骤1：拉取你的 luci-lib 仓库代码（含子模块）
       - name: Checkout luci-lib repo
         uses: actions/checkout@v4
         with:
-          submodules: true  # 拉取仓库时同时拉取子模块
-          token: ${{ secrets.PAT }}  # 后续推送需要的 PAT 令牌（下一步配置）
+          fetch-depth: 1  # 浅拉取主仓库，减少耗时
+          token: ${{ secrets.PAT }}  # 使用 PAT 授权
 
-      # 步骤2：更新所有子模块到远程最新版本
-      - name: Update submodules to latest
+      - name: 初始化并浅拉取所有子模块（默认分支）
         run: |
-          echo "=== 开始更新 luci-lib 的子模块 ==="
-          git submodule update --remote --recursive  # 核心命令：更新所有子模块
-          git status  # 查看子模块是否有更新（方便日志排查）
+          git submodule init
+          # 对所有子模块执行浅拉取（默认分支最新1个提交）
+          git submodule update --depth 1 --recursive
 
-      # 步骤3：将子模块更新提交到你的 luci-lib 仓库
-      - name: Commit submodule changes to luci-lib
+      - name: 单独处理 openclash 子模块（切换到 dev 分支，浅拉取）
         run: |
-          # 配置提交者信息（GitHub Actions 机器人身份）
+          echo "=== 开始处理 openclash 子模块（dev 分支） ==="
+          cd openclash || { echo "openclash 子模块目录不存在"; exit 1; }
+          
+          # 配置远程仓库跟踪 dev 分支
+          git config remote.origin.fetch "+refs/heads/dev:refs/remotes/origin/dev"
+          
+          # 浅拉取 dev 分支最新1个提交（保持浅克隆特性）
+          git fetch --depth 1 origin dev
+          
+          # 切换到 dev 分支（强制创建本地分支，基于远程 dev）
+          git checkout -B dev origin/dev
+          cd ..  # 返回主仓库根目录
+
+      - name: 更新其他子模块到远程最新版本（浅拉取）
+        run: |
+          echo "=== 更新其他子模块到最新版本 ==="
+          # 排除 openclash（已单独处理），更新其他子模块
+          git submodule foreach '[[ "$path" != "openclash" ]] && git pull --depth 1 origin $(git rev-parse --abbrev-ref HEAD)'
+
+      - name: 提交子模块更新
+        run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           
-          # 添加子模块相关文件（.gitmodules 是子模块配置，子模块目录按需调整）
-          git add .gitmodules  # 必加：子模块配置文件
-          git add ./  # 若子模块在根目录，直接 add 所有；若在特定目录（如 luci-xxx/），则写 git add luci-xxx/
+          # 添加所有子模块相关变更
+          git add .gitmodules */.git
+          git commit -m "Auto: Update submodules (openclash: dev branch, others: latest)" || echo "无更新可提交"
           
-          # 提交更新（若无更新则跳过，避免报错）
-          git commit -m "Auto: Update luci-lib submodules to latest" || echo "No submodule updates to commit"
-          
-          # 推送到你的 luci-lib 仓库的 main 分支
+          # 推送到仓库
           git push origin main
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}  # 用 PAT 令牌授权推送
+          GITHUB_TOKEN: ${{ secrets.PAT }}
