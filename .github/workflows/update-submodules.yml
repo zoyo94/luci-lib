@@ -36,12 +36,12 @@ jobs:
           git checkout -B dev origin/dev
           cd ..  # 返回主仓库根目录
 
-      - name: 更新其他子模块到远程最新版本（浅拉取）
+      - name: 更新其他子模块到最新版本（浅拉取）
         run: |
           echo "=== 更新其他子模块到最新版本 ==="
-          # 排除 openclash（已单独处理），更新其他子模块
-          git submodule foreach '[[ "$path" != "openclash" ]] && git pull --depth 1 origin $(git rev-parse --abbrev-ref HEAD)'
-
+          # 改用 sh 兼容的条件判断语法（用 [ ] 而非 [[ ]]，并添加分号分隔）
+          git submodule foreach 'if [ "$path" != "openclash" ]; then git pull --depth 1 origin $(git rev-parse --abbrev-ref HEAD); fi'
+          
       - name: 提交子模块更新
         run: |
           git config --global user.name "GitHub Actions"
