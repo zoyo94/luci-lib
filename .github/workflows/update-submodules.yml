@@ -35,12 +35,14 @@ jobs:
           # 切换到 dev 分支（强制创建本地分支，基于远程 dev）
           git checkout -B dev origin/dev
           cd ..  # 返回主仓库根目录
-
-      - name: 更新其他子模块到最新版本（浅拉取）
+          
+      - name: 更新其他子模块到最新版本（强制同步远程）
         run: |
-          echo "=== 更新其他子模块到最新版本 ==="
-          # 改用 sh 兼容的条件判断语法（用 [ ] 而非 [[ ]]，并添加分号分隔）
-          git submodule foreach 'if [ "$path" != "openclash" ]; then git pull --depth 1 origin $(git rev-parse --abbrev-ref HEAD); fi'
+          echo "=== 强制同步其他子模块到远程最新版本 ==="
+          # 排除 openclash，对其他子模块执行：
+          # 1. 浅拉取远程最新代码
+          # 2. 强制重置本地状态到远程当前分支最新版本（会覆盖本地修改）
+          git submodule foreach 'if [ "$path" != "openclash" ]; then git fetch --depth 1 origin; git reset --hard origin/$(git rev-parse --abbrev-ref HEAD); fi'
           
       - name: 提交子模块更新
         run: |
