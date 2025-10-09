@@ -1,0 +1,46 @@
+name: Auto Update Submodules for luci-lib
+
+# 触发条件：按需选择（推荐「定时+手动」，避免频繁推送）
+on:
+  # 1. 手动触发（需要时在 Actions 页面点击运行）
+  workflow_dispatch:
+  # 2. 定时触发（每天 UTC 0 点执行，即北京时间 8 点，可调整 cron 表达式）
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  update-submodules:
+    runs-on: ubuntu-latest
+    steps:
+      # 步骤1：拉取你的 luci-lib 仓库代码（含子模块）
+      - name: Checkout luci-lib repo
+        uses: actions/checkout@v4
+        with:
+          submodules: true  # 拉取仓库时同时拉取子模块
+          token: ${{ secrets.PAT }}  # 后续推送需要的 PAT 令牌（下一步配置）
+
+      # 步骤2：更新所有子模块到远程最新版本
+      - name: Update submodules to latest
+        run: |
+          echo "=== 开始更新 luci-lib 的子模块 ==="
+          git submodule update --remote --recursive  # 核心命令：更新所有子模块
+          git status  # 查看子模块是否有更新（方便日志排查）
+
+      # 步骤3：将子模块更新提交到你的 luci-lib 仓库
+      - name: Commit submodule changes to luci-lib
+        run: |
+          # 配置提交者信息（GitHub Actions 机器人身份）
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          
+          # 添加子模块相关文件（.gitmodules 是子模块配置，子模块目录按需调整）
+          git add .gitmodules  # 必加：子模块配置文件
+          git add ./  # 若子模块在根目录，直接 add 所有；若在特定目录（如 luci-xxx/），则写 git add luci-xxx/
+          
+          # 提交更新（若无更新则跳过，避免报错）
+          git commit -m "Auto: Update luci-lib submodules to latest" || echo "No submodule updates to commit"
+          
+          # 推送到你的 luci-lib 仓库的 main 分支
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}  # 用 PAT 令牌授权推送
