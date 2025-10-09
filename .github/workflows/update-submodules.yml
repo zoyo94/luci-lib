@@ -49,8 +49,11 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           
-          # 添加所有子模块相关变更
-          git add .gitmodules */.git
+          # 只添加 .gitmodules 和子模块目录的变化（Git 会自动跟踪子模块的版本哈希）
+          git add .gitmodules  # 子模块配置文件
+          git add openclash/ istore/ luci-app-daed/ luci-app-mosdns/ luci-app-lucky/ luci-theme-argon/ luci-app-argon-config/ nas_luci/ nas/  # 显式列出所有子模块目录
+          
+          # 提交（无更新则跳过）
           git commit -m "Auto: Update submodules (openclash: dev branch, others: latest)" || echo "无更新可提交"
           
           # 推送到仓库
