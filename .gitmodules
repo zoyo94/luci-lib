@@ -29,3 +29,9 @@
 [submodule "nas_luci"]
 	path = nas_luci
 	url = https://github.com/linkease/nas-packages-luci.git
+[submodule "OpenAppFilter"]
+	path = OpenAppFilter
+	url = https://github.com/destan19/OpenAppFilter.git
+[submodule "luci-app-adguardhome"]
+	path = luci-app-adguardhome
+	url = https://github.com/stevenjoezhang/luci-app-adguardhome.git

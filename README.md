@@ -11,7 +11,8 @@ git submodule add -f --depth 1 https://github.com/jerrykuku/luci-app-argon-confi
 git submodule add --force --depth 1 https://github.com/linkease/nas-packages-luci.git nas_luci  
 git submodule add --force --depth 1 https://github.com/linkease/nas-packages.git nas 
 git submodule add --force --depth 1 https://github.com/linkease/istore.git istore 
-mkdir -p libcron && wget -O libcron/Makefile https://raw.githubusercontent.com/immortalwrt/packages/refs/heads/master/libs/libcron/Makefile
+git submodule add -f --depth 1 https://github.com/destan19/OpenAppFilter.git   
+git submodule add -f --depth 1 https://github.com/stevenjoezhang/luci-app-adguardhome.git  
 ```
 #  添加子模块（不指定分支）
 
