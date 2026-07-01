@@ -2,6 +2,7 @@
 	path = openclash
 	url = https://github.com/vernesong/OpenClash.git
 	branch = dev
+	shallow = true
 [submodule "luci-app-daed"]
 	path = luci-app-daed
 	url = https://github.com/QiuSimons/luci-app-daed.git
