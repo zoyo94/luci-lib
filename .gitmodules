@@ -3,9 +3,6 @@
 	url = https://github.com/vernesong/OpenClash.git
 	branch = dev
 	shallow = true
-[submodule "luci-app-daed"]
-	path = luci-app-daed
-	url = https://github.com/QiuSimons/luci-app-daed.git
 [submodule "luci-app-mosdns"]
 	path = luci-app-mosdns
 	url = https://github.com/sbwml/luci-app-mosdns.git
@@ -21,18 +18,18 @@
 [submodule "luci-app-quickstart"]
 	path = luci-app-quickstart
 	url = https://github.com/animegasan/luci-app-quickstart.git
-[submodule "istore"]
-	path = istore
-	url = https://github.com/linkease/istore.git
-[submodule "nas"]
-	path = nas
-	url = https://github.com/linkease/nas-packages.git
-[submodule "nas_luci"]
-	path = nas_luci
-	url = https://github.com/linkease/nas-packages-luci.git
 [submodule "OpenAppFilter"]
 	path = OpenAppFilter
 	url = https://github.com/destan19/OpenAppFilter.git
 [submodule "luci-app-adguardhome"]
 	path = luci-app-adguardhome
 	url = https://github.com/stevenjoezhang/luci-app-adguardhome.git
+[submodule "openwrt-daede"]
+	path = openwrt-daede
+	url = https://github.com/kenzok8/openwrt-daede.git
+[submodule "luci-app-tailscale-community"]
+	path = luci-app-tailscale-community
+	url = https://github.com/Tokisaki-Galaxy/luci-app-tailscale-community.git
+[submodule "luci-app-netwizard"]
+	path = luci-app-netwizard
+	url = https://github.com/sirpdboy/luci-app-netwizard.git

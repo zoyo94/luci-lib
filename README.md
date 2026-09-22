@@ -3,16 +3,16 @@
 
 # 包含这些玩意:
 ```bash
-git submodule add -f --depth 1 https://github.com/QiuSimons/luci-app-daed.git luci-app-daed
 git submodule add -f --depth 1 https://github.com/sbwml/luci-app-mosdns.git luci-app-mosdns
 git submodule add -f --depth 1 https://github.com/gdy666/luci-app-lucky.git luci-app-lucky
 git submodule add -f --depth 1 https://github.com/jerrykuku/luci-theme-argon.git luci-theme-argon
 git submodule add -f --depth 1 https://github.com/jerrykuku/luci-app-argon-config.git luci-app-argon-config
-git submodule add --force --depth 1 https://github.com/linkease/nas-packages-luci.git nas_luci  
-git submodule add --force --depth 1 https://github.com/linkease/nas-packages.git nas 
-git submodule add --force --depth 1 https://github.com/linkease/istore.git istore 
-git submodule add -f --depth 1 https://github.com/destan19/OpenAppFilter.git   
-git submodule add -f --depth 1 https://github.com/stevenjoezhang/luci-app-adguardhome.git  
+git submodule add -f --depth 1 https://github.com/animegasan/luci-app-quickstart.git luci-app-quickstart
+git submodule add -f --depth 1 https://github.com/destan19/OpenAppFilter.git
+git submodule add -f --depth 1 https://github.com/stevenjoezhang/luci-app-adguardhome.git
+git submodule add -f --depth 1 https://github.com/kenzok8/openwrt-daede.git openwrt-daede
+git submodule add -f --depth 1 https://github.com/Tokisaki-Galaxy/luci-app-tailscale-community.git luci-app-tailscale-community
+git submodule add -f --depth 1 https://github.com/sirpdboy/luci-app-netwizard.git luci-app-netwizard
 ```
 #  添加子模块（不指定分支）
 
