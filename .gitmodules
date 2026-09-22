@@ -33,3 +33,9 @@
 [submodule "luci-app-netwizard"]
 	path = luci-app-netwizard
 	url = https://github.com/sirpdboy/luci-app-netwizard.git
+[submodule "luci-app-dockerman"]
+	path = luci-app-dockerman
+	url = https://github.com/lisaac/luci-app-dockerman.git
+[submodule "luci-lib-docker"]
+	path = luci-lib-docker
+	url = https://github.com/lisaac/luci-lib-docker.git
