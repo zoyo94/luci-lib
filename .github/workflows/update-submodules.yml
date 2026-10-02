@@ -51,7 +51,8 @@ jobs:
           
           # 只添加 .gitmodules 和子模块目录的变化（Git 会自动跟踪子模块的版本哈希）
           git add .gitmodules  # 子模块配置文件
-          git add openclash/ istore/ luci-app-daed/ luci-app-mosdns/ luci-app-lucky/ luci-theme-argon/ luci-app-argon-config/ nas_luci/ nas/  # 显式列出所有子模块目录
+          # 动态列出当前所有子模块目录，避免硬编码已删除子模块导致的 pathspec 错误
+          git submodule status | awk '{print $2}' | xargs -r git add
           
           # 提交（无更新则跳过）
           git commit -m "Auto: Update submodules (openclash: dev branch, others: latest)" || echo "无更新可提交"
