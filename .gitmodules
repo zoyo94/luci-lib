@@ -39,9 +39,9 @@
 [submodule "luci-lib-docker"]
 	path = luci-lib-docker
 	url = https://github.com/lisaac/luci-lib-docker.git
-[submodule "luci-app-bandix-plus"]
-	path = luci-app-bandix-plus
-	url = https://github.com/timsaya/luci-app-bandix-plus.git
 [submodule "openwrt-bandix"]
 	path = openwrt-bandix
 	url = https://github.com/timsaya/openwrt-bandix.git
+[submodule "luci-app-bandix"]
+	path = luci-app-bandix
+	url = https://github.com/timsaya/luci-app-bandix.git
