@@ -15,6 +15,7 @@ git submodule add -f --depth 1 https://github.com/Tokisaki-Galaxy/luci-app-tails
 git submodule add -f --depth 1 https://github.com/sirpdboy/luci-app-netwizard.git luci-app-netwizard
 git submodule add -f --depth 1 https://github.com/lisaac/luci-app-dockerman.git luci-app-dockerman
 git submodule add -f --depth 1 https://github.com/lisaac/luci-lib-docker.git luci-lib-docker
+git submodule add -f --depth 1 https://github.com/timsaya/luci-app-bandix-plus.git luci-app-bandix-plus
 ```
 #  添加子模块（不指定分支）
 
